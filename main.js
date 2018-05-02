@@ -1,6 +1,10 @@
 'use strict'
 const $loadBtn = document.querySelector('#image_picker')
-const $sortBtn = document.querySelector('#sort_button')
+const $brightBtn = document.querySelector('#bright_button')
+const $rgbBtn = document.querySelector('#rgb_button')
+const $redBtn = document.querySelector('#red_button')
+const $greenBtn = document.querySelector('#green_button')
+const $blueBtn = document.querySelector('#blue_button')
 const $canvas = document.querySelector('#image_holder')
 const ctx = $canvas.getContext('2d')
 
@@ -10,10 +14,38 @@ $loadBtn.addEventListener('change', () => {
   }
 })
 
-$sortBtn.addEventListener('click', () => {
+$brightBtn.addEventListener('click', () => {
+  sortImage((a, b) => {
+    let first = a[0] + a[1] + a[2]
+    let second = b[0] + b[1] + b[2]
+    return first > second ? 1 : first == second ? 0 : -1;
+  })
+})
+$rgbBtn.addEventListener('click', () => {
   sortImage((a, b) => {
     let first = a[0] * 0xffff + a[1] * 0xff + a[2]
     let second = b[0] * 0xffff + b[1] * 0xff + b[2]
+    return first > second ? 1 : first == second ? 0 : -1;
+  })
+})
+$redBtn.addEventListener('click', () => {
+  sortImage((a, b) => {
+    let first = a[0]
+    let second = b[0]
+    return first > second ? 1 : first == second ? 0 : -1;
+  })
+})
+$greenBtn.addEventListener('click', () => {
+  sortImage((a, b) => {
+    let first = a[0 + 1]
+    let second = b[0 + 1]
+    return first > second ? 1 : first == second ? 0 : -1;
+  })
+})
+$blueBtn.addEventListener('click', () => {
+  sortImage((a, b) => {
+    let first = a[0 + 2]
+    let second = b[0 + 2]
     return first > second ? 1 : first == second ? 0 : -1;
   })
 })

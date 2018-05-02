@@ -8,9 +8,17 @@
   <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
 </head>
 <body>
-  <canvas id="image_holder"></canvas>
-  <input id="image_picker" type="file" accept="image/png" value="Load an image">
-  <button id="sort_button">sort</button>
+  <canvas id="image_holder" width="0" height="0"></canvas>
+  <div class="settings">
+    <input id="image_picker" type="file" accept="image/png" value="Load an image">
+    <div class="sorr_buttons">
+      <button id="bright_button">bright sort</button>
+      <button id="rgb_button">rgb sort</button>
+      <button id="red_button">red sort</button>
+      <button id="green_button">green sort</button>
+      <button id="blue_button">blue sort</button>
+    </div>
+  </div>
   <script src="main.js"></script>
 </body>
 </html>
