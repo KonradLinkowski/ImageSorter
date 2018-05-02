@@ -11,7 +11,11 @@ $loadBtn.addEventListener('change', () => {
 })
 
 $sortBtn.addEventListener('click', () => {
-  betterSort()
+  sortImage((a, b) => {
+    let first = a[0] * 0xffff + a[1] * 0xff + a[2]
+    let second = b[0] * 0xffff + b[1] * 0xff + b[2]
+    return first > second ? 1 : first == second ? 0 : -1;
+  })
 })
 
 function setImage(file) {
@@ -28,31 +32,7 @@ function setImage(file) {
   image.src = url
 }
 
-// function sortImage() {
-//   let imageData = ctx.getImageData(0, 0, $canvas.width, $canvas.height)
-//   let data = imageData.data
-//   for (let i = 0; i < data.length - 4; i += 4) {
-//     for (let j = i + 4; j < data.length; j += 4) {
-//       let first = data[i] * 0xffff + data[i + 1] * 0xff + data[i + 2]
-//       let second = data[j] * 0xffff + data[j + 1] * 0xff + data[j + 2]
-//       if (first > second) {
-//         let swap = [data[i], data[i + 1], data[i + 2], data[i + 3]]
-//         data[i] = data[j]
-//         data[i + 1] = data[j + 1]
-//         data[i + 2] = data[j + 2]
-//         data[i + 3] = data[j + 3]
-//         data[j] = swap[0]
-//         data[j + 1] = swap[1]
-//         data[j + 2] = swap[2]
-//         data[j + 3] = swap[3]
-//       }
-//     }
-//     console.log(i)
-//   }
-//   ctx.putImageData(imageData, 0, 0)
-// }
-
-function betterSort() {
+function sortImage(comparator) {
   let imageData = ctx.getImageData(0, 0, $canvas.width, $canvas.height)
   let data = imageData.data
 
@@ -61,11 +41,7 @@ function betterSort() {
   for (let i = 0; i < data.length; i += 4) {
     tempArray.push([data[i], data[i + 1], data[i + 2], data[i + 3]])
   }
-  tempArray.sort((a, b) => {
-    let first = a[0] * 0xffff + a[1] * 0xff + a[2]
-    let second = b[0] * 0xffff + b[1] * 0xff + b[2]
-    return first > second ? 1 : first == second ? 0 : -1;
-  })
+  tempArray.sort(comparator)
   for (let i = 0; i < tempArray.length; i++) {
     data[i * 4] = tempArray[i][0]
     data[i * 4 + 1] = tempArray[i][1]
