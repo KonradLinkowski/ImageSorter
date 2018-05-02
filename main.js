@@ -8,7 +8,6 @@ const $blueBtn = document.querySelector('#blue_button')
 const $originalBtn = document.querySelector('#show_original')
 const $canvas = document.querySelector('#image_holder')
 const ctx = $canvas.getContext('2d')
-
 let original
 
 $loadBtn.addEventListener('change', () => {
@@ -43,15 +42,15 @@ $redBtn.addEventListener('click', () => {
 })
 $greenBtn.addEventListener('click', () => {
   sortImage((a, b) => {
-    let first = a[0 + 1]
-    let second = b[0 + 1]
+    let first = a[1]
+    let second = b[1]
     return first > second ? 1 : first == second ? 0 : -1;
   })
 })
 $blueBtn.addEventListener('click', () => {
   sortImage((a, b) => {
-    let first = a[0 + 2]
-    let second = b[0 + 2]
+    let first = a[2]
+    let second = b[2]
     return first > second ? 1 : first == second ? 0 : -1;
   })
 })
@@ -73,6 +72,9 @@ function setImage(file) {
 }
 
 function sortImage(comparator) {
+  if ($canvas.width == 0 || $canvas.height == 0) {
+    return;
+  }
   let imageData = ctx.getImageData(0, 0, $canvas.width, $canvas.height)
   let data = imageData.data
 
@@ -89,6 +91,7 @@ function sortImage(comparator) {
     data[i * 4 + 3] = tempArray[i][3]
   }
   ctx.putImageData(imageData, 0, 0)
+  console.log(imageData)
 }
 
 function showOriginal() {
