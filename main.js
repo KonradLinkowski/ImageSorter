@@ -5,13 +5,19 @@ const $rgbBtn = document.querySelector('#rgb_button')
 const $redBtn = document.querySelector('#red_button')
 const $greenBtn = document.querySelector('#green_button')
 const $blueBtn = document.querySelector('#blue_button')
+const $originalBtn = document.querySelector('#show_original')
 const $canvas = document.querySelector('#image_holder')
 const ctx = $canvas.getContext('2d')
+
+let original
 
 $loadBtn.addEventListener('change', () => {
   if ($loadBtn.files.length > 0) {
     setImage($loadBtn.files[0])
   }
+})
+$originalBtn.addEventListener('click', () => {
+  showOriginal()
 })
 
 $brightBtn.addEventListener('click', () => {
@@ -59,6 +65,8 @@ function setImage(file) {
     $canvas.width = image.width
     $canvas.height = image.height
     ctx.drawImage(image, 0, 0)
+    original = ctx.createImageData($canvas.width, $canvas.height)
+    original.data.set(ctx.getImageData(0, 0, $canvas.width, $canvas.height).data)
   }
   let url = window.URL.createObjectURL(file)
   image.src = url
@@ -81,4 +89,8 @@ function sortImage(comparator) {
     data[i * 4 + 3] = tempArray[i][3]
   }
   ctx.putImageData(imageData, 0, 0)
+}
+
+function showOriginal() {
+  ctx.putImageData(original, 0, 0)
 }
