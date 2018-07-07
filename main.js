@@ -17,7 +17,7 @@ $editor.session.setMode("ace/mode/javascript")
 $editor.session.setUseWrapMode(true)
 $editor.session.setTabSize(2)
 $editor.setShowPrintMargin(false)
-$editor.setValue('/*\nfunction must return 1 if a is greater than b, 0 if a and b are equal or -1 if a is less then b\n[0] == red, [1] == green, [2] == blue, [3] == alpha\n*/\n(a, b) => {\n\treturn a[0] > b[0] ? 1 : a[0] == b[0] ? 0 : -1\n}')
+$editor.setValue('/*\nfunction must return 1 if a is greater than b, 0 if a and b are equal or -1 if a is less than b\n[0] == red, [1] == green, [2] == blue, [3] == alpha\n*/\n(a, b) => {\n\treturn a[0] > b[0] ? 1 : a[0] == b[0] ? 0 : -1\n}')
 
 $loadBtn.addEventListener('change', () => {
   if ($loadBtn.files.length > 0) {
