@@ -103,7 +103,6 @@ function sortImage(comparator) {
     data[i * 4 + 3] = tempArray[i][3]
   }
   ctx.putImageData(imageData, 0, 0)
-  console.log(imageData)
 }
 
 function showOriginal() {
