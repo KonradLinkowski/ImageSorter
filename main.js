@@ -10,6 +10,15 @@ const $canvas = document.querySelector('#image_holder')
 const ctx = $canvas.getContext('2d')
 let original
 
+const $ownBtn = document.querySelector('#own_button')
+const $editor = ace.edit("fun_editor")
+$editor.setTheme("ace/theme/textmate")
+$editor.session.setMode("ace/mode/javascript")
+$editor.session.setUseWrapMode(true)
+$editor.session.setTabSize(2)
+$editor.setShowPrintMargin(false)
+$editor.setValue('/*\nfunction must return 1 if a is greater than b, 0 if a and b are equal or -1 if a is less then b\n[0] == red, [1] == green, [2] == blue, [3] == alpha\n*/\n(a, b) => {\n\treturn a[0] > b[0] ? 1 : a[0] == b[0] ? 0 : -1\n}')
+
 $loadBtn.addEventListener('change', () => {
   if ($loadBtn.files.length > 0) {
     setImage($loadBtn.files[0])
@@ -53,6 +62,9 @@ $blueBtn.addEventListener('click', () => {
     let second = b[2]
     return first > second ? 1 : first == second ? 0 : -1;
   })
+})
+$ownBtn.addEventListener('click', () => {
+  sortImage(eval($editor.value))
 })
 
 function setImage(file) {

@@ -9,6 +9,7 @@
 </head>
 <body>
   <div class="wrapper">
+    <canvas class="sort-canvas" id="image_holder" width="0" height="0"></canvas>
     <div class="settings">
       <label class="btn" for="image_picker">choose file</label>
       <input class="image-picker" id="image_picker" type="file" accept="image/png" value="Load an image">
@@ -21,8 +22,13 @@
         <button class="btn" id="blue_button">blue sort</button>
       </div>
     </div>
-    <canvas class="sort-canvas" id="image_holder" width="0" height="0"></canvas>
+    <div class="own_sort">
+      <p>Write your own sort function</p>
+      <div class="fun_editor" id="fun_editor"></div>
+      <button class="btn" id="own_button">sort</button>
+    </div>
   </div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.3.3/ace.js"></script>
   <script src="main.js"></script>
 </body>
 </html>
