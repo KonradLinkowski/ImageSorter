@@ -64,7 +64,7 @@ $blueBtn.addEventListener('click', () => {
   })
 })
 $ownBtn.addEventListener('click', () => {
-  sortImage(eval($editor.value))
+  sortImage(eval($editor.getValue()))
 })
 
 function setImage(file) {
